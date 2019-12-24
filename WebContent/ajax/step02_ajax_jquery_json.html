@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<htrml>
+<head>
+<meta charset="utf-8">
+<title>step01_ajax_jquery_json.html</title>
+<script src="../js/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	$("#loadAjax").click(function(){
+		$.ajax({
+			//type : 'GET',
+			//url : 'emp_json.jsp?start=0&length=10',
+			type : 'POST',
+			url : 'emp_json.jsp',
+			data : {"start" : 0, "length" : 5},
+			dataType : 'json', //json, xml, html 세개 중 하나가 올 수있다.
+			error : function(){
+				alert('Json Load Error');
+			},
+			success : function(obj){
+				console.log(obj);
+				console.log(typeof obj);
+				const listArray = obj.items;
+				let msg = '';
+				for(let i=0; i<listArray.length; i++){
+					let no = listArray[i].no;
+					let name = listArray[i].name;
+					msg += no + "," + name + "<br>";
+				}
+				$("#sung").html(msg);
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<div id="sung"></div>
+	<button id="loadAjax">Ajax 불러오기</button>
+</body>
+<script>
+	
+</script>
+</htrml>

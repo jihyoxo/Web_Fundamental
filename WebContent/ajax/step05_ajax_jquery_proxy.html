@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<htrml>
+<head>
+<meta charset="utf-8">
+<title>Step05_ajax_jquery_proxy</title>
+<script src="../js/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	$("#loadAjax").click(function(){
+		$.ajax({
+			type : 'GET',
+			url : 'naver_proxy.jsp',
+			dataType : 'json', //json, xml, html 세개 중 하나가 올 수있다.
+			error : function(){
+				alert('Json Load Error');
+			},
+			success : function(obj){
+				console.log(obj);
+				console.log(typeof obj);
+				$("#sung").html(JSON.stringify(obj));
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<div id="sung"></div>
+	<button id="loadAjax">Ajax 불러오기</button>
+</body>
+<script>
+	
+</script>
+</htrml>
